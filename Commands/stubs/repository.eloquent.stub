@@ -1,0 +1,34 @@
+<?php
+
+namespace {{namespace}};
+
+use {{rootNamespace}}Model\{{class}} as {{class}}Model;
+use {{rootNamespace}}Repository\{{class}} as {{class}}Repository;
+
+class {{class}} implements {{class}}Repository {
+
+  public function all($columns = array('*')) {
+    return {{class}}Model::all($columns);
+  }
+
+  public function create(array $attributes) {
+    return {{class}}Model::create($attributes);
+  }
+
+  public function find($id, $columns = array('*')) {
+    return {{class}}Model::find($id, $columns);
+  }
+
+  public function update($id, array $input) {
+    $item = $this->find($id);
+
+    $item->make($input);
+
+    return $item->save();
+  }
+
+  public function delete($id) {
+    return {{class}}Model::destroy($id);
+  }
+
+}

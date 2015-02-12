@@ -1,0 +1,9 @@
+<?php
+
+namespace {{namespace}};
+
+use Mlntn\Repository\Repository;
+
+interface {{class}} extends Repository {
+
+}

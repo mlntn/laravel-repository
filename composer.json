@@ -1,0 +1,19 @@
+{
+  "name": "mlntn/laravel-repository",
+  "type": "library",
+  "description": "Providing repository services for Laravel",
+  "keywords": [],
+  "homepage": "http://github.com/mlntn/laravel-repository",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jared Mellentine",
+      "email": "jared@mellentine.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Mlntn\\Repository\\": ""
+    }
+  }
+}
