@@ -32,3 +32,17 @@ Register the provider in app/config.php:
 ```		
 
 When you generate a repository, you will be provided with a binding that you need to add to the register method of RepositoryServiceProvider.
+
+### Okay, then what?
+Then you can move some logic out of your controllers and into your repository classes.
+
+Laravel can magically inject your repository into your controller, if you tell it to:
+```php
+public function some_method($id, MyNewRepository $repo) {
+  $item = $repo->find($id);
+  // ...
+}
+```
+
+### That's great, but why?
+Separation of concerns, mostly. Your controller should be to-the-point and shouldn't be so tightly coupled to your model.
