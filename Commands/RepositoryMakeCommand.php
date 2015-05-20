@@ -4,6 +4,7 @@ namespace Mlntn\Repository\Commands;
 
 use Exception;
 use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputOption;
 
 class RepositoryMakeCommand extends GeneratorCommand {
 
@@ -78,9 +79,25 @@ class RepositoryMakeCommand extends GeneratorCommand {
 
     $stub = $this->files->get($file);
 
-    $contents = $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
+    $contents = $this->replaceNamespace($stub, $name)->replaceModelNamespace($stub, $name)->replaceClass($stub, $name);
 
     $this->files->put($path, $contents);
+  }
+
+  /**
+   * Replace the class name for the given stub.
+   *
+   * @param  string  $stub
+   * @param  string  $name
+   * @return string
+   */
+  protected function replaceModelNamespace(&$stub, $name)
+  {
+    $model_ns = $this->input->getOption('model-namespace') ?: $this->getNamespace($name) . '\Model';
+
+    $stub = str_replace('{{modelNamespace}}', $model_ns, $stub);
+
+    return $this;
   }
 
   /**
@@ -91,6 +108,18 @@ class RepositoryMakeCommand extends GeneratorCommand {
    */
   protected function getDefaultNamespace($rootNamespace) {
     return $rootNamespace . '\Repository';
+  }
+
+  /**
+   * Get the console command options.
+   *
+   * @return array
+   */
+  protected function getOptions()
+  {
+    return array(
+      array('model-namespace', null, InputOption::VALUE_OPTIONAL, 'Namespace of model classes'),
+    );
   }
 
 }

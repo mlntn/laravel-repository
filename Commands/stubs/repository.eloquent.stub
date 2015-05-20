@@ -2,7 +2,7 @@
 
 namespace {{namespace}};
 
-use {{rootNamespace}}Model\{{class}} as {{class}}Model;
+use {{modelNamespace}}\{{class}} as {{class}}Model;
 use {{rootNamespace}}Repository\{{class}} as {{class}}Repository;
 
 class {{class}} implements {{class}}Repository {
